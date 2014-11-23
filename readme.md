@@ -1,3 +1,9 @@
+Description
+===========
+
+Small clock
+
+
 Install ncurses lib
 =========================
 
