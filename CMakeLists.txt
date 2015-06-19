@@ -8,7 +8,7 @@ find_package(Curses REQUIRED)
 
 link_libraries(ncurses pthread)
 
-# include_directories( ${CURSES_INCLUDE_DIR} )
+include_directories( ${CURSES_INCLUDE_DIR} )
 
 set(SOURCE_FILES
     curhello.c

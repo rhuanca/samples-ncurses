@@ -2,29 +2,30 @@
 #include <pthread.h>
 #include "time_utils.h"
 
-int run;
-pthread_t t;
+int ui_run;
+pthread_t ui_thread;
 
 void *run_ui(void *p) {
 	int c = 0;
-	while (run) {
+
+	while (ui_run) {
 		printf("hello it is running...:) %d\n", c++);
 		delay(1000);
 	}
 }
 
 void init_ui() {
-	run = 1;
-	pthread_create(&t, NULL, run_ui, NULL);
+	ui_run = 1;
+	pthread_create(&ui_thread, NULL, run_ui, NULL);
 }
 
 void stop_ui() {
-	run = 0;
+	ui_run = 0;
 }
 
 
 int ui_running() {
-	return run;
+	return ui_run;
 }
 
 
