@@ -17,4 +17,10 @@ set(SOURCE_FILES
     time_utils.c
     time_utils.h)
 
+
+get_cmake_property(_variableNames VARIABLES)
+foreach (_variableName ${_variableNames})
+    message(STATUS "${_variableName}=${${_variableName}}")
+endforeach()
+
 add_executable(samples_ncurses ${SOURCE_FILES})

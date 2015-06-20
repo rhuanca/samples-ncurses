@@ -1,18 +1,14 @@
 #include <stdio.h>
-#include <pthread.h>
-#include <string.h>
 #include "ncurses_thread.h"
-#include "time_utils.h"
+
+void *main_routine(void *arg)
+{
+    FILE *fp = fopen("/home/rhuanca/tmp/ooops.txt", "w");
+    fprintf(fp, "entered...here.");
+    fflush(fp);
+}
 
 int main() {
-	int c;
-	init_ui();
-	while(ui_running()) {
-		c = getchar();
-		if(c == 'x') {
-			stop_ui();
-		}
-	}
-	printf("ui is not working any more....\n");
+    ui_start(&main_routine);
 	return 0;
 }

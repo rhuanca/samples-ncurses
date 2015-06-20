@@ -8,9 +8,12 @@
 #ifndef NCURSES_THREAD_H_
 #define NCURSES_THREAD_H_
 
-void init_ui();
-void run_ui();
-void stop_ui();
+#include <curses.h>
+
+void ui_start(void *(*routine)(void *));
+void ui_stop();
 int ui_running();
+
+void _ui_run();
 
 #endif /* NCURSES_THREAD_H_ */

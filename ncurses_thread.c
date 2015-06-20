@@ -1,32 +1,57 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
-#include "time_utils.h"
+//#include <unistd.h>
+#include "ncurses_thread.h"
 
-int ui_run;
+int ui_is_running;
 pthread_t ui_thread;
+WINDOW *ui_main_win;
 
-void *run_ui(void *p) {
-	int c = 0;
+void ui_start(void *(*__start_routine) (void *)) {
 
-	while (ui_run) {
-		printf("hello it is running...:) %d\n", c++);
-		delay(1000);
-	}
+
+    FILE *fp = fopen("/home/rhuanca/tmp/ooops3.txt", "w");
+    fprintf(fp, "entered...here.\n");
+    fflush(fp);
+
+    int r = pthread_create(&ui_thread, NULL, __start_routine, NULL);
+
+    fprintf(fp, "result: %i\n", r);
+    fflush(fp);
+
+    _ui_run();
+
+    while (ui_running()) {
+        // do nothing
+    }
+
+    fclose(fp);
 }
 
-void init_ui() {
-	ui_run = 1;
-	pthread_create(&ui_thread, NULL, run_ui, NULL);
+void ui_stop() {
+    ui_is_running = 0;
 }
-
-void stop_ui() {
-	ui_run = 0;
-}
-
 
 int ui_running() {
-	return ui_run;
+    return ui_is_running;
 }
 
+void _ui_run() {
+    if ((ui_main_win = initscr()) == NULL) {
+        fprintf(stderr, "Error initialising ncurses.\n");
+        exit(EXIT_FAILURE);
+    }
 
+    FILE *fp = fopen("/home/rhuanca/tmp/ooops2.txt", "w");
+    fprintf(fp, "entered...here.");
+    fflush(fp);
 
+    refresh();
+    ui_is_running = 1;
+    while (ui_running()) {
+    }
+    delwin(ui_main_win);
+    endwin();
+    refresh();
+}
