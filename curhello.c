@@ -4,7 +4,7 @@
 void *main_routine(void *arg)
 {
     FILE *fp = fopen("/home/rhuanca/tmp/ooops.txt", "w");
-    fprintf(fp, "entered...here.");
+    fprintf(fp, "entered...here\n.");
     fflush(fp);
 }
 
