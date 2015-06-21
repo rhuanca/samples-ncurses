@@ -1,14 +1,22 @@
 #include <stdio.h>
-#include "myui_thread.h"
+#include <time.h>
+#include <curses.h>
+#include "my_ui_thread.h"
+#include "time_utils.h"
 
-void *main_routine(void *arg)
-{
-    FILE *fp = fopen("/home/rhuanca/tmp/ooops.txt", "w");
-    fprintf(fp, "entered...here\n.");
-    fflush(fp);
+void *main_routine(void *arg) {
+    time_t t = NULL;
+    char str_time[100];
+    while (1) {
+        t = time(NULL);
+        sprintf(str_time, "%s", ctime(&t));
+        //update_ui(&str_time);
+        mvaddstr(1, 1, str_time);
+         delay(30);
+    }
 }
 
 int main() {
-    ui_start(&main_routine);
-	return 0;
+    my_ui_start(&main_routine);
+    return 0;
 }

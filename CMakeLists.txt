@@ -12,8 +12,8 @@ include_directories( ${CURSES_INCLUDE_DIR} )
 
 set(SOURCE_FILES
     clock.c
-    myui_thread.c
-    myui_thread.h
+    my_ui_thread.c
+    my_ui_thread.h
     time_utils.c
     time_utils.h)
 
