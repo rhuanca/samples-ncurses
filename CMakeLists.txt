@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-project(samples_ncurses)
+project(my_clock)
 
 set(CMAKE_C_FLAGS "-std=c99")
 
@@ -11,16 +11,15 @@ link_libraries(ncurses pthread)
 include_directories( ${CURSES_INCLUDE_DIR} )
 
 set(SOURCE_FILES
-    curhello.c
-    ncurses_thread.c
-    ncurses_thread.h
+    clock.c
+    myui_thread.c
+    myui_thread.h
     time_utils.c
     time_utils.h)
 
+#get_cmake_property(_variableNames VARIABLES)
+#foreach (_variableName ${_variableNames})
+#    message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()
 
-get_cmake_property(_variableNames VARIABLES)
-foreach (_variableName ${_variableNames})
-    message(STATUS "${_variableName}=${${_variableName}}")
-endforeach()
-
-add_executable(samples_ncurses ${SOURCE_FILES})
+add_executable(my_clock ${SOURCE_FILES})

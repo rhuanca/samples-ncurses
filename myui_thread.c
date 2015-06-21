@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 //#include <unistd.h>
-#include "ncurses_thread.h"
+#include "myui_thread.h"
 
 int _ui_is_running;
 pthread_t ui_thread;

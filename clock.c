@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "ncurses_thread.h"
+#include "myui_thread.h"
 
 void *main_routine(void *arg)
 {
