@@ -12,7 +12,7 @@ void *main_routine(void *arg) {
         sprintf(str_time, "%s", ctime(&t));
         //update_ui(&str_time);
         mvaddstr(1, 1, str_time);
-         delay(30);
+        delay(30);
     }
 }
 
